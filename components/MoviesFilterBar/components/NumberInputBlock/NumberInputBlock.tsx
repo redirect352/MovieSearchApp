@@ -1,0 +1,50 @@
+'use client';
+
+import { Flex, Title } from '@mantine/core';
+import { PropsWithChildren, useState } from 'react';
+import classes from './styles.module.css';
+import CustomNumberInput from '@/UI/NumberInput';
+
+type NumberBlockProps = {
+	className?: string,
+	placeholderFrom? : string,
+	placeholderTo? : string
+
+};
+
+export default function NumberInputBlock({ className, placeholderFrom = '', placeholderTo = '', children } : PropsWithChildren<NumberBlockProps>) {
+	const [from, setFrom] = useState<string | number>('');
+	const [to, setTo] = useState<string | number>('');
+
+	return (
+		<div className={className}>
+			<Flex className={classes.numberInputBlock}>
+				<Title size={16}>
+					{children}
+				</Title>
+				<Flex direction="row" gap={12}>
+					<CustomNumberInput
+						value={from}
+						setValue={setFrom}
+						props={{
+							min: 1,
+							max: to === '' ? 5 : +to,
+							step: 0.1,
+							placeholder: placeholderFrom,
+						}}
+					/>
+					<CustomNumberInput
+						value={to}
+						setValue={setTo}
+						props={{
+							min: from === '' ? 1 : +from,
+							max: 5,
+							step: 0.1,
+							placeholder: placeholderTo,
+						}}
+					/>
+				</Flex>
+			</Flex>
+		</div>
+	);
+}

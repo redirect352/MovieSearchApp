@@ -1,0 +1,39 @@
+.resetButton{
+	font-size: 14px;
+	font-weight: 500;
+	text-align: left;
+	flex-grow: 1;
+}
+/* var(--mantine-color-grey-6) */
+.label{
+	line-height: 20px;
+	height: 20px;
+}
+.label:active{
+	color: var(--mantine-color-purple-6);
+	transition: 0.2s ease all;
+}
+.resetHeader{
+	visibility: hidden;
+}
+.resetButtonIcon{
+	transform: scale(1);
+	height: auto;
+	stroke: var(--mantine-color-purple-5);
+}
+
+.filterInputs{
+	width: 30%;
+}
+.root:hover{
+	color: var(--mantine-color-purple-4);
+	transition: 0.2s ease all;
+}
+.root:hover .resetButtonIcon{
+	stroke: var(--mantine-color-purple-4);
+	transition: 0.2s ease all;
+}
+.root:active .resetButtonIcon{
+	stroke: var(--mantine-color-purple-6);
+	transition: 0.2s ease all;
+}

@@ -1,0 +1,7 @@
+.root:not([data-variant=transparent]){
+	background-color: var(--mantine-color-purple-5);
+	transition: 0.2s ease all;
+}
+.root:active{
+	background-color: var(--mantine-color-purple-6);
+}

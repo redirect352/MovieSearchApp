@@ -1,0 +1,20 @@
+.redirectButton{
+	background-color: var(--mantine-color-purple-5);
+	padding: 10px 20px 10px 20px;
+	gap: 10px;
+	border-radius: 8px;
+	opacity: 0px;
+	max-width: fit-content;
+	font-size: rem(14px);
+}
+.notFoundContainer{
+	flex-basis: fit-content;
+	flex-grow: 1;
+	text-align: center;
+}
+.notFoundSidebar{
+	width: 100%;
+	position: absolute;
+	width: rem(280px);
+	padding: rem(24px);
+}
