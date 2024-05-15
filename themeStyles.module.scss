@@ -1,0 +1,43 @@
+.my-button-root{
+	transition: 0.25s ease all;
+	background-color: var(--mantine-color-purple-5);
+	&:hover{
+		background-color: var(--mantine-color-purple-4);
+	}
+	&:active{
+		background-color: var(--mantine-color-purple-6);
+	}
+	&[data-variant=transparent]{
+		background-color: transparent;
+		&:hover{
+			color: var(--mantine-color-purple-4);
+		}
+		&:active{
+			color: var(--mantine-color-purple-6);
+		}
+	}
+	&[data-disabled=true]{
+		transition: 0.25s ease all;
+		color: var(--mantine-color-grey-6);
+		&:hover{
+			color: var(--mantine-color-grey-6);
+		}
+		&:active{
+			color: var(--mantine-color-grey-6);
+		}
+	}
+	&[data-size=sm]{
+		border-radius: rem(8px);
+		padding-top: rem(6px);
+		padding-bottom: rem(6px);
+	}
+	&[data-size=md]{
+		border-radius: rem(8px);
+		padding-top: rem(10px);
+		padding-bottom: rem(10px);
+	}
+}
+
+
+
+

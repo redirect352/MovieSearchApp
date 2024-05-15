@@ -1,7 +1,7 @@
 'use client';
 
 import { Flex, Title } from '@mantine/core';
-import { PropsWithChildren, useState } from 'react';
+import { PropsWithChildren } from 'react';
 import classes from './styles.module.css';
 import CustomNumberInput from '@/UI/NumberInput';
 
@@ -9,13 +9,13 @@ type NumberBlockProps = {
 	className?: string,
 	placeholderFrom? : string,
 	placeholderTo? : string
-
+	from : string | number,
+	to : string | number,
+	setFrom : (newFrom : string | number) => void,
+	setTo : (newTo : string | number) => void,
 };
 
-export default function NumberInputBlock({ className, placeholderFrom = '', placeholderTo = '', children } : PropsWithChildren<NumberBlockProps>) {
-	const [from, setFrom] = useState<string | number>('');
-	const [to, setTo] = useState<string | number>('');
-
+export default function NumberInputBlock({ className, placeholderFrom = '', placeholderTo = '', children, from, to, setFrom, setTo } : PropsWithChildren<NumberBlockProps>) {
 	return (
 		<div className={className}>
 			<Flex className={classes.numberInputBlock}>

@@ -1,15 +1,11 @@
-'use client';
-
-import { Flex, Title } from '@mantine/core';
+import { Button, Flex, Title } from '@mantine/core';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import border from '@/public/notFoundBorder.png';
 import notFoundText from '@/public/notFound.svg';
 import classes from '../notFound.module.css';
-import CustomButton from '@/UI/CustomButton';
 
 export default function Page() {
-	const { replace } = useRouter();
 	return (
 		<Flex className={classes.notFoundContainer} direction="column" gap="48px" justify="center" align="center" style={{ height: '100vh' }}>
 			<Flex direction="column" gap="28px" align="center">
@@ -21,7 +17,9 @@ export default function Page() {
 				<Title order={3}>
 					We can’t find the page you are looking for
 				</Title>
-				<CustomButton className={classes.redirectButton} onClick={() => replace('/')}>Go Home</CustomButton>
+				<Link href="/" replace>
+					<Button size="md">Go Home</Button>
+				</Link>
 			</Flex>
 		</Flex>
 	);

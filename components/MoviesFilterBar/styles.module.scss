@@ -1,0 +1,43 @@
+.resetButton{
+	font-size: 14px;
+	font-weight: 500;
+	text-align: left;
+	flex-grow: 1;
+}
+/* var(--mantine-color-grey-6) */
+
+.resetHeader{
+	visibility: hidden;
+}
+.resetButtonIcon{
+	padding-top: 1%;
+	transform: scale(1);
+	height: auto;
+	stroke: var(--mantine-color-purple-5);
+}
+
+.filterInputs{
+	width: 30%;
+}
+.root{
+	&:not([data-disabled=true]){
+		&:hover{
+			.resetButtonIcon{
+				stroke: var(--mantine-color-purple-4);
+				transition: 0.25s ease all;
+			}
+		}
+		&:active{
+			.resetButtonIcon{
+				stroke: var(--mantine-color-purple-6);
+				transition: 0.25s ease all;
+			}
+		}
+	}
+	&[data-disabled=true]{
+		.resetButtonIcon{
+			stroke: var(--mantine-color-grey-6);
+		}
+	}
+}
+

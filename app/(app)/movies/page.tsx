@@ -1,6 +1,7 @@
 import { Flex, Title } from '@mantine/core';
 import classes from './styles.module.css';
 import MoviesFilterBar from '@/components/MoviesFilterBar/MoviesFilterBar';
+import NoMoviesFound from '@/components/NoMoviesFound/NoMoviesFound';
 
 export default async function MoviesPage() {
 	return (
@@ -10,6 +11,7 @@ export default async function MoviesPage() {
 				<div className={classes.headerAdjustBlock}></div>
 			</Flex>
 			<MoviesFilterBar />
+			<NoMoviesFound />
 		</Flex>
 	);
 }
