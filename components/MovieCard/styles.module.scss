@@ -1,0 +1,11 @@
+.cardBox{
+	width: rem(482px);
+	padding: rem(24px);
+	border-radius: rem(12px);
+	// background-color: rgb(206, 138, 138);
+}
+.mainInfo{
+	background-color: white;
+	flex-grow: 1;
+	gap: rem(16px);
+}

@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, CSSVariablesResolver, Input, MantineColorsTuple, colorsTuple, createTheme, rem } from '@mantine/core';
+import { Button, CSSVariablesResolver, Input, MantineColorsTuple, colorsTuple, createTheme, px, rem } from '@mantine/core';
 import classes from './themeStyles.module.scss';
 
 const greyScale: MantineColorsTuple = [
@@ -106,6 +106,11 @@ export const resolver: CSSVariablesResolver = (theme) => ({
 	variables: {
 		'--button-hover': theme.colors.purple[4],
 		'--mantine-hover-color': theme.colors.purple[4],
+		'--star-active-color': theme.colors.yellow[6],
+		'--star-default-color': theme.colors.grey[4],
+		'--text-color': theme.black,
+		'--mantine-color-dimmed': theme.colors.grey[6],
+		'--pagination-control-radius': rem(4),
 	},
 	light: {
 	},

@@ -1,11 +1,26 @@
-import { Flex, Title } from '@mantine/core';
+'use client';
+
+import { Flex, Pagination, Title } from '@mantine/core';
+import { useState } from 'react';
 import classes from './styles.module.css';
 import MoviesFilterBar from '@/components/MoviesFilterBar/MoviesFilterBar';
 import NoMoviesFound from '@/components/NoMoviesFound/NoMoviesFound';
 import SortBar from '@/components/SortBar';
+import MovieCard from '@/components/MovieCard';
 // import SearchForm from '@/components/SearchForm';
+const defProps = {
+	title: 'The Green Mile',
+	releaseYear: 1999,
+	genres: ['Drama', 'Crime', 'Fantasy'],
+	rating: 9.3,
+	viewsCound: '2.9M',
+	image: '/test.webp',
+};
+const moviesDef : (typeof defProps)[] = [defProps, { ...defProps, image: '' }];
 
-export default async function MoviesPage() {
+export default function MoviesPage() {
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	const [movies, setMovies] = useState(moviesDef);
 	return (
 		<Flex className={classes.moviesContainer} direction="column">
 			<Flex justify="space-between" align="center">
@@ -16,7 +31,23 @@ export default async function MoviesPage() {
 				<MoviesFilterBar />
 				<SortBar />
 			</Flex>
-			<NoMoviesFound />
+			{
+				movies.length === 0 ?
+				<NoMoviesFound />
+				:
+				<>
+					<Flex gap={16} wrap="wrap">
+					{
+						movies.map((item, index) =>
+							<MovieCard {...item} key={index} />
+						)
+					}
+					</Flex>
+					<Flex justify="flex-end">
+						<Pagination total={3} />
+					</Flex>
+				</>
+			}
 		</Flex>
 	);
 }
