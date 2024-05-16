@@ -2,7 +2,7 @@
 
 import { Button, ComboboxItem, Flex, Title } from '@mantine/core';
 import { useState } from 'react';
-import SelectBlock from './components/SelectBlock/SelectBlock';
+import SelectBlock from '../SelectBlock/SelectBlock';
 import NumberInputBlock from './components/NumberInputBlock/NumberInputBlock';
 import classes from './styles.module.scss';
 import CloseSvgIcon from '@/icons/close';
@@ -55,7 +55,7 @@ export default function MoviesFilterBar() {
 				Ratings
 			</NumberInputBlock>
 			<Flex direction="column" gap={8}>
-				<Title size={16} className={classes.resetHeader}>
+				<Title order={4} className={classes.resetHeader}>
 					Reset
 				</Title>
 				<Button

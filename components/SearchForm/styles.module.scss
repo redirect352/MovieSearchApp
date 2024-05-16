@@ -1,0 +1,27 @@
+.form{
+	display: flex;
+	align-items: center;
+	height: rem(48px);
+	width: rem(658px);
+}
+.textField{
+	flex-grow: 1;
+	height: 48px;
+	border-radius: 8px;
+	height: 48px;
+}
+.sect[data-position=right]{
+	align-self: center;
+	height: min-content;
+	--input-right-section-size : fit-content;
+	padding-right: 12px;
+}
+.input{
+	background: var(--mantine-color-white);
+	height: 48px;
+	font-size: 14px;
+	transition: 0.2s ease all;
+	&:hover{
+		border-color: var(--mantine-color-purple-5);
+	}
+}

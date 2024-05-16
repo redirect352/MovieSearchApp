@@ -19,7 +19,7 @@ export default function NumberInputBlock({ className, placeholderFrom = '', plac
 	return (
 		<div className={className}>
 			<Flex className={classes.numberInputBlock}>
-				<Title size={16}>
+				<Title order={4}>
 					{children}
 				</Title>
 				<Flex direction="row" gap={12}>
@@ -27,6 +27,7 @@ export default function NumberInputBlock({ className, placeholderFrom = '', plac
 						value={from}
 						setValue={setFrom}
 						props={{
+							size: 'md',
 							min: 1,
 							max: to === '' ? 5 : +to,
 							step: 0.1,
@@ -37,6 +38,7 @@ export default function NumberInputBlock({ className, placeholderFrom = '', plac
 						value={to}
 						setValue={setTo}
 						props={{
+							size: 'md',
 							min: from === '' ? 1 : +from,
 							max: 5,
 							step: 0.1,

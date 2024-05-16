@@ -20,10 +20,11 @@ export default function SelectBlock({ className, options, placeholder = '', chil
 	return (
 		<div className={className}>
 			<Flex className={classes.selectBlock}>
-				<Title size={16}>
+				<Title order={4}>
 					{children}
 				</Title>
 				<Select
+					size="md"
 					value={value ? value.value : null}
 					onChange={(val, option) => setValue(option)}
 					withCheckIcon={false}

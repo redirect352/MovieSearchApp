@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, CSSVariablesResolver, MantineColorsTuple, colorsTuple, createTheme, rem } from '@mantine/core';
+import { Button, CSSVariablesResolver, Input, MantineColorsTuple, colorsTuple, createTheme, rem } from '@mantine/core';
 import classes from './themeStyles.module.scss';
 
 const greyScale: MantineColorsTuple = [
@@ -31,11 +31,17 @@ const purpleScale: MantineColorsTuple = [
 export const theme = createTheme({
 	fontFamily: 'Inter, sans-serif',
 	primaryColor: 'purple',
+	white: '#FFFFFF',
+	black: '#232134',
 	colors: {
 		grey: greyScale,
 		purple: purpleScale,
 		myYellow: colorsTuple(
 			Array.from({ length: 10 }, () => '#FAB005')),
+	},
+	radius: {
+		sm: rem(8),
+		md: rem(8),
 	},
 	primaryShade: { light: 5, dark: 6 },
 	headings: {
@@ -44,11 +50,23 @@ export const theme = createTheme({
 			h1: {
 				fontWeight: '700',
 				fontSize: rem(32),
+				lineHeight: rem(44.8),
+
 			},
 			h3: {
 				fontSize: rem(20),
+				lineHeight: rem(24.2),
+
+			},
+			h4: {
+				lineHeight: rem(22.4),
+				fontSize: rem(16),
 			},
 		},
+	},
+	lineHeights: {
+		sm: rem(20),
+		md: rem(20),
 	},
 	components: {
 		Button: Button.extend({
@@ -68,17 +86,26 @@ export const theme = createTheme({
 				root: classes['my-button-root'],
 			},
 		}),
+		Input: Input.extend({
+			vars: (_, props) => {
+				if (props.size === 'sm' || props.size === 'md') {
+					return {
+						wrapper: {
+							'--input-fz': rem(14),
+						},
+					};
+				}
+				return { wrapper: {} };
+				},
+		}),
 	},
 });
 
 // eslint-disable-next-line @typescript-eslint/no-shadow
 export const resolver: CSSVariablesResolver = (theme) => ({
 	variables: {
-		// '--button-height-sm': 'min-content',
-		// '--button-height-md': 'min-content',
-		// ' --button-padding-x-sm': '100px',
-		// '--button-padding-x-md': '100px',
 		'--button-hover': theme.colors.purple[4],
+		'--mantine-hover-color': theme.colors.purple[4],
 	},
 	light: {
 	},
