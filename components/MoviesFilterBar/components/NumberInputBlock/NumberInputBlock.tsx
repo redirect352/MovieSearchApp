@@ -3,7 +3,7 @@
 import { Flex, Title } from '@mantine/core';
 import { PropsWithChildren } from 'react';
 import classes from './styles.module.css';
-import CustomNumberInput from '@/UI/NumberInput';
+import { CustomNumberInput } from '@/UI';
 
 type NumberBlockProps = {
 	className?: string,

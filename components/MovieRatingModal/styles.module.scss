@@ -1,0 +1,16 @@
+.modalBox{
+	width: rem(380px);
+	background-color: var(--mantine-color-white);
+}
+.headerSection{
+	border: 1px solid var(--mantine-color-grey-2);
+	padding: rem(16px);
+	text-align: left;
+}
+.contentSection{
+	display: flex;
+	padding: rem(16px);
+	gap: rem(16px);
+	flex-direction: column;
+	align-items: flex-start;
+}

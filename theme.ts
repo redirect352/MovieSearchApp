@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, CSSVariablesResolver, Input, MantineColorsTuple, colorsTuple, createTheme, px, rem } from '@mantine/core';
+import { Button, CSSVariablesResolver, Input, MantineColorsTuple, colorsTuple, createTheme, rem } from '@mantine/core';
 import classes from './themeStyles.module.scss';
 
 const greyScale: MantineColorsTuple = [

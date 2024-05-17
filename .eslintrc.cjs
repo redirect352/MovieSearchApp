@@ -15,6 +15,7 @@ module.exports = {
     'import/extensions': 'off',
 	'linebreak-style' : 'off',
 	'no-tabs' : 'off',
-	"react/jsx-indent-props": [0, 'tab']
+	"react/jsx-indent-props": [0, 'tab'],
+	'no-plusplus' : 'off',
   },
 };
