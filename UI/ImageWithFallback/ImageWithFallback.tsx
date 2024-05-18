@@ -10,7 +10,7 @@ export default function ImageWithFallback(props : ImageProps) {
 	return (
 		<>
 			{props.src === '' || errored ?
-				<Container w={props.width} h={props.height}>
+				<Container px={0} m={0} w={props.width} h={props.height}>
 					<NoPoster />
 				</Container>
 				:
