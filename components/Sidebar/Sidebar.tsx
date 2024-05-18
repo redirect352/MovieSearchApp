@@ -3,7 +3,7 @@ import classes from './Sidebar.module.css';
 import HeaderLogo from './components/headerLogo/HeaderLogo';
 import SidebarOptions from './components/sidebarOptions/SidebarOptions';
 
-export function Sidebar() {
+export default function Sidebar() {
 	return (
 		<div className={classes.sidebar}>
 			<Flex

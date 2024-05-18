@@ -4,7 +4,7 @@ import { Flex, Title, Text } from '@mantine/core';
 import React from 'react';
 import { useDisclosure } from '@mantine/hooks';
 import { StarButton } from '@/UI';
-import MovieRatingModal from '../MovieRatingModal';
+import MovieRatingModal from '../MovieRatingModal/MovieRatingModal';
 
 export type MovieDescriptionProps = {
 	title : string,

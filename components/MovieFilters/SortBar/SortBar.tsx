@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { ComboboxItem, Flex } from '@mantine/core';
-import SelectBlock from '../SelectBlock/SelectBlock';
+import SelectBlock from '../../../UI/SelectBlock/SelectBlock';
 import classes from './styles.module.scss';
 import { sortOptions } from './sortOptions';
 // import SearchForm from '../SearchForm';

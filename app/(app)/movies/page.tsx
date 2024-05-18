@@ -3,10 +3,7 @@
 import { Flex, Pagination, Title } from '@mantine/core';
 import { useState } from 'react';
 import classes from './styles.module.css';
-import MoviesFilterBar from '@/components/MoviesFilterBar/MoviesFilterBar';
-import NoMoviesFound from '@/components/NoMoviesFound/NoMoviesFound';
-import SortBar from '@/components/SortBar';
-import MovieCard from '@/components/MovieCard';
+import { MovieCard, SortBar, MoviesFilterBar, NoMoviesFound } from '@/components';
 // import SearchForm from '@/components/SearchForm';
 const defProps = {
 	title: 'The Green Mile',

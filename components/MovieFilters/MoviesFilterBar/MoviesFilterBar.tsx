@@ -2,7 +2,7 @@
 
 import { Button, ComboboxItem, Flex, Title } from '@mantine/core';
 import { useState } from 'react';
-import SelectBlock from '../SelectBlock/SelectBlock';
+import SelectBlock from '../../../UI/SelectBlock/SelectBlock';
 import NumberInputBlock from './components/NumberInputBlock/NumberInputBlock';
 import classes from './styles.module.scss';
 import CloseSvgIcon from '@/icons/close';

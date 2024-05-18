@@ -3,7 +3,7 @@ import React from 'react';
 import { MantineProvider, ColorSchemeScript, Flex } from '@mantine/core';
 import classes from '../app.module.css';
 import { resolver, theme } from '../../theme';
-import { Sidebar } from '@/components/Sidebar/Sidebar';
+import { Sidebar } from '@/components';
 
 export const metadata = {
   title: 'Mantine Next.js template',

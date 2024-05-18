@@ -1,4 +1,4 @@
-import NoRatedMovies from '@/components/NoRatedMovies';
+import { NoRatedMovies } from '@/components';
 
 export default function Page() {
 	const ratedMovies : string[] = [];
