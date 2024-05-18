@@ -1,7 +1,7 @@
 import { Anchor, Breadcrumbs, Flex } from '@mantine/core';
 import moment from 'moment';
 import classes from './styles.module.scss';
-import { MovieFullInfoCard } from '@/components';
+import { MovieExtraInfoCard, MovieFullInfoCard } from '@/components';
 
 const items = [
 	{ title: 'Movies', href: '/movies' },
@@ -32,6 +32,7 @@ export default function MoviePage() {
 				{items}
 			</Breadcrumbs>
 			<MovieFullInfoCard {...defProps} />
+			<MovieExtraInfoCard />
 		</Flex>
 	);
 }

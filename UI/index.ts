@@ -4,5 +4,14 @@ import NoPoster from './NoPoster/NoPoster';
 import ImageWithFallback from './ImageWithFallback/ImageWithFallback';
 import CustomNumberInput from './NumberInput/NumberInput';
 import StarIcon from './StarIcon/StarIcon';
+import VideoPlayer from './VideoPlayer/VideoPlayer';
 
-export { RatingInput, StarButton, NoPoster, ImageWithFallback, CustomNumberInput, StarIcon };
+export {
+	RatingInput,
+	StarButton,
+	NoPoster,
+	ImageWithFallback,
+	CustomNumberInput,
+	StarIcon,
+	VideoPlayer,
+};
