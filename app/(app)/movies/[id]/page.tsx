@@ -12,11 +12,12 @@ const items = [
 	</Anchor>
   ));
 const defProps = {
+	id: 11,
 	title: 'The Green Mile',
 	releaseYear: 1999,
 	genres: ['Drama', 'Crime', 'Fantasy'],
 	rating: 9.3,
-	viewsCound: '2.9M',
+	viewsCount: '2.9M',
 	image: '/test.webp',
 	// image: '',
 	duration: '3h 11m',

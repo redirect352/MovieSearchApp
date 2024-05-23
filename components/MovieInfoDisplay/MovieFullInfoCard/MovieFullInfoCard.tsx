@@ -2,22 +2,19 @@
 
 import { Flex, Paper, Text } from '@mantine/core';
 import React from 'react';
-import { MovieCardProps } from '../MovieCard/MovieCard';
-import MovieDescription from '../MovieDescription/MovieDescription';
+import MovieHeader from '../MovieHeader/MovieHeader';
 import { ImageWithFallback, StarButton } from '@/UI';
+import { MovieExtendedInfo } from '@/types';
 
 type MovieFullInfoCardProps = {
-	duration: string,
-	premiereDate: string,
-	budget: number | string,
-	boxOffice: number | string,
-} & MovieCardProps;
+
+} & MovieExtendedInfo;
 
 const numberFormater = new Intl.NumberFormat('en-US');
 
 export default function MovieFullInfoCard(props : MovieFullInfoCardProps) {
-	const { title, releaseYear, genres, rating, viewsCound, image } = props;
-	const { duration, premiereDate, boxOffice, budget } = props;
+	const { title, releaseYear, genres, rating, viewsCount, image } = props;
+	const { duration, premiereDate, boxOffice, budget, id } = props;
 	return (
 		<Paper p={24}>
 			<Flex gap={8} justify="space-between">
@@ -28,11 +25,12 @@ export default function MovieFullInfoCard(props : MovieFullInfoCardProps) {
 						src={image ?? ''}
 						alt="" />
 					<Flex gap={16} direction="column" justify="space-between">
-						<MovieDescription
+						<MovieHeader
 							title={title}
 							rating={rating}
 							releaseYear={releaseYear}
-							viewsCound={viewsCound}
+							viewsCount={viewsCount}
+							id={id}
 							/>
 						<Flex gap={20}>
 							<Flex gap={12} direction="column" align="flex-start">

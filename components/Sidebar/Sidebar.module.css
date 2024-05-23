@@ -3,7 +3,7 @@
 	flex-basis: rem(280px);
 	flex-grow : 0;
 	padding: rem(24px);
-	height: 100vh;
+	height: 100%;
 	width: 280px;
 	gap:  rem(80px);
 	background-color : var(--mantine-color-purple-1)

@@ -2,19 +2,15 @@ import React from 'react';
 import { Flex, Paper, Text } from '@mantine/core';
 import classes from './styles.module.scss';
 import { StarButton, ImageWithFallback } from '@/UI';
-import MovieDescription from '../MovieDescription/MovieDescription';
+import MovieHeader from '../MovieHeader/MovieHeader';
+import { MovieInfo } from '@/types';
 
 export type MovieCardProps = {
-	title : string,
-	releaseYear: number | string,
-	genres: string[],
-	rating: number,
-	viewsCound: number | string,
-	image?: string,
-};
+
+} & MovieInfo;
 
 export default function MovieCard(props : MovieCardProps) {
-	const { title, releaseYear, genres, rating, viewsCound, image } = props;
+	const { title, releaseYear, genres, rating, viewsCount, image, id } = props;
 
 	return (
 		<Paper className={classes.cardBox}>
@@ -24,13 +20,16 @@ export default function MovieCard(props : MovieCardProps) {
 						width={119}
 						height={170}
 						src={image ?? ''}
-						alt="" />
+						alt=""
+						style={{ flexShrink: 0 }}
+						/>
 					<Flex gap={16} direction="column" justify="space-between">
-						<MovieDescription
+						<MovieHeader
 							title={title}
 							rating={rating}
 							releaseYear={releaseYear}
-							viewsCound={viewsCound}
+							viewsCount={viewsCount}
+							id={id}
 							/>
 						<Flex gap={12}>
 							<Text c="dimmed">Genres</Text>

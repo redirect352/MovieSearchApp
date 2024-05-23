@@ -1,59 +1,31 @@
 'use client';
 
-import { Button, ComboboxItem, Flex, Title } from '@mantine/core';
-import { useState } from 'react';
-import SelectBlock from '../../../UI/SelectBlock/SelectBlock';
-import NumberInputBlock from './components/NumberInputBlock/NumberInputBlock';
+import { Button, Flex, Title } from '@mantine/core';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import RatingFilter from '../RatingFilter/RatingFilter';
 import classes from './styles.module.scss';
 import CloseSvgIcon from '@/icons/close';
+import { MovieGenre } from '@/types';
+import YearFilter from '../YearFilter/YearFilter';
+import GenreFilter from '../GenreFilter/GenreFilter';
 
-const firstSelect = ['Horror', 'Epic', 'Romant'];
-const secondSelect = ['2022', '2023', '2024'];
-
-export default function MoviesFilterBar() {
-	const [genre, setGenre] = useState<ComboboxItem | null>(null);
-	const [releaseYear, setReleaseYear] = useState<ComboboxItem | null>(null);
-	const [from, setFrom] = useState<string | number>('');
-	const [to, setTo] = useState<string | number>('');
+export default function MoviesFilterBar({ genres } : { genres : MovieGenre[] }) {
+    const searchParams = useSearchParams();
+	const { replace } = useRouter();
+	const pathname = usePathname();
 	const resetFilters = () => {
-		setGenre(null);
-		setReleaseYear(null);
-		setFrom('');
-		setTo('');
+        replace(`${pathname}`);
 	};
-	const resetDisabled = genre === null && releaseYear === null && from === '' && to === '';
+	const genresSelectOptions = genres.map(val => ({ value: val.id.toString(), label: val.name }));
+	const resetDisabled = searchParams.size <= 0;
 
 	return (
 		<Flex gap={16} align="center">
-			<SelectBlock
-				value={genre}
-				setValue={(value) => setGenre(value)}
-				className={classes.filterInputs}
-				options={firstSelect}
-				placeholder="Select genre"
-				>
-				Genres
-			</SelectBlock>
-			<SelectBlock
-				value={releaseYear}
-				setValue={(value) => setReleaseYear(value)}
-				className={classes.filterInputs}
-				options={secondSelect}
-				placeholder="Select release year"
-				>
-				Release year
-			</SelectBlock>
-			<NumberInputBlock
-				className={classes.filterInputs}
-				placeholderFrom="from"
-				placeholderTo="to"
-				from={from}
-				setFrom={setFrom}
-				to={to}
-				setTo={setTo}
-				>
+			<GenreFilter className={classes.filterInputs} selectOptions={genresSelectOptions} />
+			<YearFilter className={classes.filterInputs} />
+			<RatingFilter className={classes.filterInputs}>
 				Ratings
-			</NumberInputBlock>
+			</RatingFilter>
 			<Flex direction="column" gap={8}>
 				<Title order={4} className={classes.resetHeader}>
 					Reset

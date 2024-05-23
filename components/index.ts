@@ -7,8 +7,9 @@ import NoMoviesFound from './NoMoviesFound/NoMoviesFound';
 import Sidebar from './Sidebar/Sidebar';
 import SortBar from './MovieFilters/SortBar/SortBar';
 import MovieExtraInfoCard from './MovieInfoDisplay/MovieExtraInfoCard/MovieExtraInfoCard';
+import MovieList from './MovieInfoDisplay/MovieList/MovieList';
 
 export { Sidebar, SortBar };
 export { NoMoviesFound, NoRatedMovies };
 export { MoviesFilterBar, SearchForm };
-export { MovieFullInfoCard, MovieCard, MovieExtraInfoCard };
+export { MovieFullInfoCard, MovieCard, MovieExtraInfoCard, MovieList };

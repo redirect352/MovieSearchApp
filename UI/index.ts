@@ -5,6 +5,7 @@ import ImageWithFallback from './ImageWithFallback/ImageWithFallback';
 import CustomNumberInput from './NumberInput/NumberInput';
 import StarIcon from './StarIcon/StarIcon';
 import VideoPlayer from './VideoPlayer/VideoPlayer';
+import Pagination from './Pagination/Pagination';
 
 export {
 	RatingInput,
@@ -14,4 +15,5 @@ export {
 	CustomNumberInput,
 	StarIcon,
 	VideoPlayer,
+	Pagination,
 };
