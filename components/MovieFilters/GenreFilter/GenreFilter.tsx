@@ -1,3 +1,5 @@
+'use client';
+
 import { ComboboxItem } from '@mantine/core';
 import { useState } from 'react';
 import SelectBlock from '@/UI/SelectBlock/SelectBlock';

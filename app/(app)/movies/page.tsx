@@ -1,4 +1,5 @@
 import { Flex, Title } from '@mantine/core';
+import { Suspense } from 'react';
 import classes from './styles.module.css';
 import { SortBar, MoviesFilterBar, NoMoviesFound, MovieList } from '@/components';
 import { getMovieGenresList, getMovies } from '@/services/apiService';
@@ -16,18 +17,22 @@ export default async function MoviesPage({ searchParams }: PageProps) {
 				<Title order={1} w="50%" ta="left">Movies</Title>
 				<div className={classes.headerAdjustBlock}></div>
 			</Flex>
-			<Flex direction="column" gap={24}>
-				<MoviesFilterBar genres={genres} />
-				<SortBar />
-			</Flex>
+			<Suspense>
+				<Flex direction="column" gap={24}>
+					<MoviesFilterBar genres={genres} />
+					<SortBar />
+				</Flex>
+			</Suspense>
 			{
 				movies.length === 0 ?
 				<NoMoviesFound />
 				:
-				<MovieList
-					movies={movies}
-					totalPages={pages}
-					/>
+				<Suspense>
+					<MovieList
+						movies={movies}
+						totalPages={pages}
+						/>
+				</Suspense>
 			}
 		</Flex>
 	);
