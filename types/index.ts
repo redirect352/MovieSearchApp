@@ -14,7 +14,7 @@ type MovieMainInfo = {
 };
 
 type MovieInfo = {
-	genres: string[],
+	genres: number[],
 	image?: string,
 } & MovieMainInfo;
 
@@ -25,7 +25,7 @@ type MovieExtendedInfo = MovieInfo & {
 	boxOffice: number | string,
 	overview: string,
 	productionCompanies: ProductionCompany[],
-	trailer: string,
+	trailer?: string,
 };
 
 type MovieGenre = {

@@ -15,7 +15,7 @@ export default function MovieExtraInfoCard(props: MovieExtendedInfo) {
 						<VideoPlayer
 							width={rem(500)}
 							height={rem(281)}
-							src={`https://www.youtube.com/embed/${trailer}`}
+							src={trailer ? `https://www.youtube.com/embed/${trailer}` : trailer}
 							title="Trailer"
 						/>
 					</Suspense>
@@ -30,6 +30,7 @@ export default function MovieExtraInfoCard(props: MovieExtendedInfo) {
 						<Title order={3} ta="left">Production</Title>
 						<Flex gap={12} direction="column">
 							{
+								productionCompanies.length !== 0 ?
 								productionCompanies.map((company) =>
 									<MovieAuthor
 									key={company.id}
@@ -37,6 +38,8 @@ export default function MovieExtraInfoCard(props: MovieExtendedInfo) {
 									title={company.name}
 									/>
 								)
+								:
+								<Text c="dimmed">No data about Production companies</Text>
 							}
 						</Flex>
 					</Flex>

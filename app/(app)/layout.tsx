@@ -4,13 +4,16 @@ import { MantineProvider, ColorSchemeScript, Flex } from '@mantine/core';
 import classes from '../app.module.css';
 import { resolver, theme } from '../../theme';
 import { Sidebar } from '@/components';
+import { Providers } from '@/components/Providers/providers';
+import { getMovieGenresList } from '@/services/apiService';
 
 export const metadata = {
   title: 'Mantine Next.js template',
   description: 'I am using Mantine with Next.js!',
 };
 
-export default function RootLayout({ children }: { children: any }) {
+export default async function RootLayout({ children }: { children: any }) {
+	const genres = await getMovieGenresList();
 	return (
 		<html lang="en">
 			<head>
@@ -22,14 +25,16 @@ export default function RootLayout({ children }: { children: any }) {
 				/>
 			</head>
 			<body className={classes.body}>
-			<MantineProvider theme={theme} cssVariablesResolver={resolver}>
-				<Flex className={classes.appContainer}>
-					<Sidebar />
-					<div className={classes.contentContainer}>
-						{children}
-					</div>
-				</Flex>
-			</MantineProvider>
+			<Providers value={genres}>
+				<MantineProvider theme={theme} cssVariablesResolver={resolver}>
+					<Flex className={classes.appContainer}>
+						<Sidebar />
+						<div className={classes.contentContainer}>
+							{children}
+						</div>
+					</Flex>
+				</MantineProvider>
+			</Providers>
 			</body>
 		</html>
 	);

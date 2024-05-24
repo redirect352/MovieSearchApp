@@ -4,6 +4,7 @@ import classes from './styles.module.scss';
 import { StarButton, ImageWithFallback } from '@/UI';
 import MovieHeader from '../MovieHeader/MovieHeader';
 import { MovieInfo } from '@/types';
+import MovieGenresLabel from '../MovieGenresLabel/MovieGenresLabel';
 
 export type MovieCardProps = {
 
@@ -11,7 +12,6 @@ export type MovieCardProps = {
 
 export default function MovieCard(props : MovieCardProps) {
 	const { title, releaseYear, genres, rating, viewsCount, image, id } = props;
-
 	return (
 		<Paper className={classes.cardBox}>
 			<Flex gap={8} justify="space-between">
@@ -33,7 +33,9 @@ export default function MovieCard(props : MovieCardProps) {
 							/>
 						<Flex gap={12}>
 							<Text c="dimmed">Genres</Text>
-							<Text>{genres.join(', ')}</Text>
+							<Text ta="left">
+								<MovieGenresLabel genres={genres} />
+							</Text>
 						</Flex>
 					</Flex>
 				</Flex>

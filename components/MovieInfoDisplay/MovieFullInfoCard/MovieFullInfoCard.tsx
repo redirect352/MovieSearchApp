@@ -5,6 +5,7 @@ import React from 'react';
 import MovieHeader from '../MovieHeader/MovieHeader';
 import { ImageWithFallback, StarButton } from '@/UI';
 import { MovieExtendedInfo } from '@/types';
+import MovieGenresLabel from '../MovieGenresLabel/MovieGenresLabel';
 
 type MovieFullInfoCardProps = {
 
@@ -61,7 +62,7 @@ export default function MovieFullInfoCard(props : MovieFullInfoCardProps) {
 										`$${numberFormater.format(boxOffice)}`
 									}
 								</Text>
-								<Text>{genres.join(', ')}</Text>
+								<Text ta="left"><MovieGenresLabel genres={genres} /></Text>
 							</Flex>
 						</Flex>
 

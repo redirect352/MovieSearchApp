@@ -2,20 +2,22 @@
 
 import { Button, Flex, Title } from '@mantine/core';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useContext } from 'react';
 import RatingFilter from '../RatingFilter/RatingFilter';
 import classes from './styles.module.scss';
 import CloseSvgIcon from '@/icons/close';
-import { MovieGenre } from '@/types';
 import YearFilter from '../YearFilter/YearFilter';
 import GenreFilter from '../GenreFilter/GenreFilter';
+import { GenreContext } from '@/components/Providers/providers';
 
-export default function MoviesFilterBar({ genres } : { genres : MovieGenre[] }) {
+export default function MoviesFilterBar() {
     const searchParams = useSearchParams();
 	const { replace } = useRouter();
 	const pathname = usePathname();
 	const resetFilters = () => {
         replace(`${pathname}`);
 	};
+	const genres = useContext(GenreContext);
 	const genresSelectOptions = genres.map(val => ({ value: val.id.toString(), label: val.name }));
 	const resetDisabled = searchParams.size <= 0;
 

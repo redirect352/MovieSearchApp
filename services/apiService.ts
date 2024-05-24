@@ -29,7 +29,7 @@ export async function getMovies(searchParams : Record<string, string> | URLSearc
                 id: item.id,
                 title: item.title,
                 releaseYear: moment(item.release_date).year(),
-                genres: ['Drama', 'Crime', 'Fantasy'],
+                genres: item.genre_ids,
                 rating: item.vote_average,
                 viewsCount: item.vote_count,
                 image: item.poster_path ? `https://image.tmdb.org/t/p/w500${item.poster_path ?? '/'}` : '',
@@ -61,8 +61,7 @@ export async function getMovieExtendedInfo(id : number):Promise<MovieExtendedInf
 		throw new Error('Failed to fetch data');
 	}
     const jsonRes = await res.json();
-    let index = jsonRes.videos.results.findIndex((video:any) => video.type === 'Trailer');
-    if (index === -1) index = 0;
+    const trailer = jsonRes.videos.results.find((video:any) => video.type === 'Trailer')?.key;
     const result: MovieExtendedInfo = {
         title: jsonRes.title,
         id: jsonRes.id,
@@ -70,7 +69,7 @@ export async function getMovieExtendedInfo(id : number):Promise<MovieExtendedInf
         rating: jsonRes.vote_average,
         viewsCount: jsonRes.vote_count,
         image: `https://image.tmdb.org/t/p/w500${jsonRes.poster_path}`,
-        genres: jsonRes.genres.map((apiGenre:any) => apiGenre.name),
+        genres: jsonRes.genres.map((apiGenre:any) => apiGenre.id),
         duration: jsonRes.runtime,
         premiereDate: jsonRes.release_date,
         budget: +jsonRes.budget,
@@ -82,7 +81,7 @@ export async function getMovieExtendedInfo(id : number):Promise<MovieExtendedInf
             name: item.name,
             originCountry: item.origin_country,
         })),
-        trailer: jsonRes.videos.results[index].key,
+        trailer,
     };
     return result;
 }
