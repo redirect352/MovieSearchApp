@@ -10,7 +10,6 @@ import { MovieMainInfo } from '@/types';
 
 export type MovieHeaderProps = {
 } & MovieMainInfo;
-
 export default function MovieHeader(props:MovieHeaderProps) {
 	const { id, title, releaseYear, rating, viewsCount } = props;
 	const [opened, { open, close }] = useDisclosure(false);

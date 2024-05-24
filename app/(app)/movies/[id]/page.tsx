@@ -1,39 +1,26 @@
 import { Anchor, Breadcrumbs, Flex } from '@mantine/core';
-import moment from 'moment';
 import classes from './styles.module.scss';
 import { MovieExtraInfoCard, MovieFullInfoCard } from '@/components';
+import { getMovieExtendedInfo } from '@/services/apiService';
 
-const items = [
+const items = (id : number, movieTitle: string) => [
 	{ title: 'Movies', href: '/movies' },
-	{ title: 'MovieTitle', href: '/movies/123' },
+	{ title: movieTitle, href: `/movies/${id}` },
   ].map((item, index) => (
 	<Anchor href={item.href} key={index}>
 		{item.title}
 	</Anchor>
   ));
-const defProps = {
-	id: 11,
-	title: 'The Green Mile',
-	releaseYear: 1999,
-	genres: ['Drama', 'Crime', 'Fantasy'],
-	rating: 9.3,
-	viewsCount: '2.9M',
-	image: '/test.webp',
-	// image: '',
-	duration: '3h 11m',
-	premiereDate: moment(new Date('12-12-1996')).format('MMMM D, YYYY'),
-	budget: 125_000_000,
-	boxOffice: 760_006_945,
-};
 
-export default function MoviePage() {
+export default async function MoviePage({ params }: { params: { id: string } }) {
+	const movieData = await getMovieExtendedInfo(+params.id);
 	return (
 		<Flex className={classes.movieContainer}>
 			<Breadcrumbs>
-				{items}
+				{items(+params.id, movieData.title)}
 			</Breadcrumbs>
-			<MovieFullInfoCard {...defProps} />
-			<MovieExtraInfoCard />
+			<MovieFullInfoCard {...movieData} />
+			<MovieExtraInfoCard {...movieData} />
 		</Flex>
 	);
 }

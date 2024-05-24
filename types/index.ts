@@ -1,3 +1,10 @@
+type ProductionCompany = {
+	id: number,
+	logoPath: string,
+	name: string,
+	originCountry: string,
+};
+
 type MovieMainInfo = {
     id : number,
     title : string,
@@ -16,10 +23,13 @@ type MovieExtendedInfo = MovieInfo & {
 	premiereDate: string,
 	budget: number | string,
 	boxOffice: number | string,
+	overview: string,
+	productionCompanies: ProductionCompany[],
+	trailer: string,
 };
 
 type MovieGenre = {
     id: number,
     name: string,
 };
-export type { MovieMainInfo, MovieInfo, MovieExtendedInfo, MovieGenre };
+export type { MovieMainInfo, MovieInfo, MovieExtendedInfo, MovieGenre, ProductionCompany };

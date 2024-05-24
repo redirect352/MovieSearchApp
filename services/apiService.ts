@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { MovieGenre, MovieInfo } from '@/types';
+import { MovieExtendedInfo, MovieGenre, MovieInfo } from '@/types';
 
 const apiBase = 'https://api.themoviedb.org/3';
 
@@ -19,7 +19,6 @@ export async function getMovies(searchParams : Record<string, string> | URLSearc
 	);
 
 	if (!res.ok) {
-		// This will activate the closest `error.js` Error Boundary
 		throw new Error('Failed to fetch data');
 	}
     const jsonRes = await res.json();
@@ -47,9 +46,43 @@ export async function getMovieGenresList():Promise<MovieGenre[]> {
 		{ next: { revalidate: 3600 } }
 	);
 	if (!res.ok) {
-		// This will activate the closest `error.js` Error Boundary
 		throw new Error('Failed to fetch data');
 	}
     const jsonRes = await res.json();
     return jsonRes.genres;
+}
+export async function getMovieExtendedInfo(id : number):Promise<MovieExtendedInfo> {
+	const api_key = process.env.API_KEY;
+	const res = await fetch(
+		`${apiBase}/movie/${id}?api_key=${api_key}&append_to_response=videos`,
+		{ next: { revalidate: 3600 } }
+	);
+	if (!res.ok) {
+		throw new Error('Failed to fetch data');
+	}
+    const jsonRes = await res.json();
+    let index = jsonRes.videos.results.findIndex((video:any) => video.type === 'Trailer');
+    if (index === -1) index = 0;
+    const result: MovieExtendedInfo = {
+        title: jsonRes.title,
+        id: jsonRes.id,
+        releaseYear: (new Date(jsonRes.release_date)).getFullYear(),
+        rating: jsonRes.vote_average,
+        viewsCount: jsonRes.vote_count,
+        image: `https://image.tmdb.org/t/p/w500${jsonRes.poster_path}`,
+        genres: jsonRes.genres.map((apiGenre:any) => apiGenre.name),
+        duration: jsonRes.runtime,
+        premiereDate: jsonRes.release_date,
+        budget: +jsonRes.budget,
+        boxOffice: jsonRes.revenue,
+        overview: jsonRes.overview,
+        productionCompanies: jsonRes.production_companies.map((item:any) => ({
+            id: item.id,
+            logoPath: item.logo_path,
+            name: item.name,
+            originCountry: item.origin_country,
+        })),
+        trailer: jsonRes.videos.results[index].key,
+    };
+    return result;
 }
