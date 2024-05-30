@@ -33,4 +33,14 @@ type MovieGenre = {
     id: number,
     name: string,
 };
-export type { MovieMainInfo, MovieInfo, MovieExtendedInfo, MovieGenre, ProductionCompany };
+type PageProps = {
+	searchParams: Record<string, string> | URLSearchParams,
+};
+export type {
+	MovieMainInfo,
+	MovieInfo,
+	MovieExtendedInfo,
+	MovieGenre,
+	ProductionCompany,
+	PageProps,
+};

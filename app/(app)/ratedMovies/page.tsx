@@ -1,9 +1,9 @@
 import { Flex, Title } from '@mantine/core';
 import { Suspense } from 'react';
-import { PageProps } from '@/.next/types/app/(app)/layout';
 import { MovieList, NoMoviesFound, NoRatedMovies, SearchForm } from '@/components';
 import { createNewGuestSession, getRatedMovies } from '@/services/apiService';
 import classes from './styles.module.scss';
+import { PageProps } from '@/types';
 
 export default async function Page({ searchParams } :PageProps) {
 	const sessionId = await createNewGuestSession();
