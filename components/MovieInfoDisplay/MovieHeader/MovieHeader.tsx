@@ -30,7 +30,14 @@ export default function MovieHeader(props:MovieHeaderProps) {
 					<Text c="dimmed">{viewsCount}</Text>
 				</Flex>
 			</Flex>
-			<MovieRatingModal opened={opened} onClose={close} movieTitle={title} centered />
+			<MovieRatingModal
+				opened={opened}
+				onClose={close}
+				movieTitle={title}
+				movieId={id}
+				centered
+				startRating={props.userRating}
+				/>
 		</>
 	);
 }

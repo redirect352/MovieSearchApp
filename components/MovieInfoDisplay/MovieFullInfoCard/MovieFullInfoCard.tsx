@@ -1,11 +1,10 @@
-'use client';
-
 import { Flex, Paper, Text } from '@mantine/core';
 import React from 'react';
 import MovieHeader from '../MovieHeader/MovieHeader';
 import { ImageWithFallback, StarButton } from '@/UI';
 import { MovieExtendedInfo } from '@/types';
 import MovieGenresLabel from '../MovieGenresLabel/MovieGenresLabel';
+import { createNewGuestSession, getRatedMovies } from '@/services/apiService';
 
 type MovieFullInfoCardProps = {
 
@@ -13,12 +12,14 @@ type MovieFullInfoCardProps = {
 
 const numberFormater = new Intl.NumberFormat('en-US');
 
-export default function MovieFullInfoCard(props : MovieFullInfoCardProps) {
+export default async function MovieFullInfoCard(props : MovieFullInfoCardProps) {
+	const sessionId = await createNewGuestSession();
+	const { movieIds } = await getRatedMovies({}, sessionId);
 	const { title, releaseYear, genres, rating, viewsCount, image } = props;
 	const { duration, premiereDate, boxOffice, budget, id } = props;
 	return (
 		<Paper p={24}>
-			<Flex gap={8} justify="space-between">
+			<Flex gap={8} justify="space-between" align="start">
 				<Flex gap={16} flex="1">
 					<ImageWithFallback
 						width={250}
@@ -32,6 +33,7 @@ export default function MovieFullInfoCard(props : MovieFullInfoCardProps) {
 							releaseYear={releaseYear}
 							viewsCount={viewsCount}
 							id={id}
+							userRating={movieIds.get(id)}
 							/>
 						<Flex gap={20}>
 							<Flex gap={12} direction="column" align="flex-start">
@@ -68,7 +70,7 @@ export default function MovieFullInfoCard(props : MovieFullInfoCardProps) {
 
 					</Flex>
 				</Flex>
-				<StarButton buttonActive />
+				<StarButton buttonActive={movieIds.has(id)} rating={movieIds.get(id)} activeColor="var(--mantine-color-purple-5)" />
 			</Flex>
 		</Paper>
 	);

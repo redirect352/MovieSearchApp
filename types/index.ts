@@ -11,6 +11,7 @@ type MovieMainInfo = {
 	releaseYear: number | string,
 	rating: number,
 	viewsCount: number | string,
+	userRating?: number,
 };
 
 type MovieInfo = {

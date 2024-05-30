@@ -14,7 +14,7 @@ export default function RatingInput({ maxRating = 10, rating, setRating }:Rating
 	const [currentRating, setCurrentRating] = useState<number | null>(rating);
 	function renderInputs(maxNumber : number) {
 		const res : React.JSX.Element[] = [];
-		for (let i = 1; i < maxNumber; i++) {
+		for (let i = 1; i <= maxNumber; i++) {
 			res.push(
 				<StarButton
 					buttonActive={currentRating ? i <= currentRating : i <= rating}

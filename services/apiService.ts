@@ -19,7 +19,7 @@ export async function getMovies(searchParams : Record<string, string> | URLSearc
 	);
 
 	if (!res.ok) {
-		throw new Error('Failed to fetch data');
+		throw new Error('Failed to get movies');
 	}
     const jsonRes = await res.json();
     const result = {
@@ -46,7 +46,7 @@ export async function getMovieGenresList():Promise<MovieGenre[]> {
 		{ next: { revalidate: 3600 } }
 	);
 	if (!res.ok) {
-		throw new Error('Failed to fetch data');
+		throw new Error('Failed to get movie genre list');
 	}
     const jsonRes = await res.json();
     return jsonRes.genres;
@@ -58,7 +58,7 @@ export async function getMovieExtendedInfo(id : number):Promise<MovieExtendedInf
 		{ next: { revalidate: 3600 } }
 	);
 	if (!res.ok) {
-		throw new Error('Failed to fetch data');
+		throw new Error('Failed to get movie ext info');
 	}
     const jsonRes = await res.json();
     const trailer = jsonRes.videos.results.find((video:any) => video.type === 'Trailer')?.key;
@@ -84,4 +84,60 @@ export async function getMovieExtendedInfo(id : number):Promise<MovieExtendedInf
         trailer,
     };
     return result;
+}
+export async function createNewGuestSession():Promise<string> {
+	const api_key = process.env.API_KEY;
+	const res = await fetch(
+		`${apiBase}/authentication/guest_session/new?api_key=${api_key}`,
+		{ next: { revalidate: 3600 } }
+	);
+	if (!res.ok) {
+		throw new Error('Failed to create guest session');
+	}
+    const jsonRes = await res.json();
+    return jsonRes.guest_session_id;
+}
+
+export async function getRatedMovies(
+    searchParams : Record<string, string> | URLSearchParams,
+    sessionId: string
+):
+    Promise<{
+        pages : number,
+        movies: MovieInfo[],
+        movieIds: Map<number, number>,
+    }> {
+	const api_key = process.env.API_KEY;
+	const params = new URLSearchParams(searchParams);
+	if (!params.has('page')) {
+		params.set('page', '1');
+	}
+	const res = await fetch(
+		`${apiBase}/guest_session/${sessionId}/rated/movies?language=en-US&api_key=${api_key}&${params.toString()}`,
+		{ next: { tags: ['ratedMovies'] } }
+	);
+
+	if (!res.ok) {
+        console.error(await res.json());
+        return { pages: 0, movieIds: new Map(), movies: [] };
+	}
+    const jsonRes = await res.json();
+    // const idMap = new Map<number,number>();
+    return {
+        pages: jsonRes.total_pages,
+        movies: jsonRes.results.map(
+            (item : any) => ({
+                    id: item.id,
+                    title: item.title,
+                    releaseYear: moment(item.release_date).year(),
+                    genres: item.genre_ids,
+                    rating: item.vote_average,
+                    viewsCount: item.vote_count,
+                    image: item.poster_path ? `https://image.tmdb.org/t/p/w500${item.poster_path ?? '/'}` : '',
+                    userRating: item.rating,
+                })
+        ),
+        movieIds: new Map(jsonRes.results.map((item : any) =>
+            ([item.id, item.rating]))),
+    };
 }

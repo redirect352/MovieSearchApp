@@ -5,15 +5,19 @@ import classes from '../app.module.css';
 import { resolver, theme } from '../../theme';
 import { Sidebar } from '@/components';
 import { Providers } from '@/components/Providers/providers';
-import { getMovieGenresList } from '@/services/apiService';
+import { createNewGuestSession, getMovieGenresList } from '@/services/apiService';
 
 export const metadata = {
-  title: 'Mantine Next.js template',
-  description: 'I am using Mantine with Next.js!',
+  title: 'Movie search app',
+  description: 'MSA using Mantine with Next.js!',
 };
 
-export default async function RootLayout({ children }: { children: any }) {
+type LayoutProps = React.PropsWithChildren<{
+}>;
+
+export default async function RootLayout({ children }: LayoutProps) {
 	const genres = await getMovieGenresList();
+	const sessionId = await createNewGuestSession();
 	return (
 		<html lang="en">
 			<head>
@@ -25,7 +29,7 @@ export default async function RootLayout({ children }: { children: any }) {
 				/>
 			</head>
 			<body className={classes.body}>
-			<Providers value={genres}>
+			<Providers sessionId={sessionId} value={genres}>
 				<MantineProvider theme={theme} cssVariablesResolver={resolver}>
 					<Flex className={classes.appContainer}>
 						<Sidebar />
@@ -39,14 +43,3 @@ export default async function RootLayout({ children }: { children: any }) {
 		</html>
 	);
 }
-
-// export default function RootLayout({ children }: { children: any }) {
-// 	return (
-// 		<>
-// 			<Sidebar />
-// 			<div className={classes.contentContainer}>
-// 				{children}
-// 			</div>
-// 		</>
-// 	);
-// }

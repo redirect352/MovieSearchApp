@@ -6,7 +6,7 @@ import SelectBlock from '../../../UI/SelectBlock/SelectBlock';
 import classes from './styles.module.scss';
 import { sortOptions } from './sortOptions';
 import { useSearchParamValue, useUpdatePageURL } from '@/hooks';
-// import SearchForm from '../SearchForm';
+import SearchForm from '../SearchForm/SearchForm';
 
 export default function SortBar() {
     const currentSort = useSearchParamValue<string>('sortby');
@@ -20,7 +20,7 @@ export default function SortBar() {
     };
 	return (
 		<Flex align="flex-end" justify="flex-end" gap={24}>
-			{/* <SearchForm /> */}
+			<SearchForm />
 			<SelectBlock
 				className={classes.sortByBlock}
 				options={sortOptions}
